@@ -1,0 +1,539 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  color: white;
+}
+
+div.weather {
+  text-align: center;
+  font-family: 'Helvetica Neue', helvetica, sans-serif;
+  font-weight: 200;
+  /* font-size: 50px;
+  font-weight: 400; */
+
+}
+
+div.weather h2:nth-child(1) {
+  font-size: 24px;
+  font-weight: 200;
+  margin-bottom: 0;
+}
+
+div.weather h2:nth-child(2) {
+  font-size: 34px;
+  font-weight: 400;
+  margin: 0;
+}
+
+div.weather h2:nth-child(3) {
+  font-size: 18px;
+  font-weight: 200;
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.poster-container {
+  display: flex;
+  justify-content: center;
+  top: 100px;
+  width: 100%;
+  height: 70%;
+  flex-wrap: wrap;
+  overflow: auto;
+  margin-top: 30px;
+}
+
+.poster-container.hidden {
+  display: none;
+}
+
+/* movie details div */
+.info-popup {
+  position: absolute;
+  width: 50%;
+  overflow: auto;
+  height: 350px;
+  left: 50%;
+  /* margin-left: -25%; */
+  top: 100px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+
+  background-color: rgba(0, 0, 0, .9);
+  color: rgba(255, 255, 255, .9);
+  font-family: 'Helvetica Neue', helvetica, sans-serif;
+  font-weight: 200;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, .3);
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+
+}
+.info-popup h2{
+  font-weight: 200;
+}
+.body {
+  position: fixed;
+}
+
+.info-popup h2:nth-child(2) {
+  font-weight: 400;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.info-popup h2:nth-child(3) {
+  font-size: 18px;
+  margin-top: 5px;
+}
+.info-popup h2:nth-child(4) {
+  font-size: 20px;
+  font-weight: 400;
+}
+.info-popup h2:nth-child(5) {
+  font-size: 18px;
+}
+.info-popup h2:nth-child(n+6) {
+  margin-bottom: 5px;
+}
+.info-popup p {
+  margin: 2px;
+}
+
+/* movie details div default is hidden */
+
+.info-popup.hidden {
+  display: none;
+}
+
+.exit-button {
+  font-size: 30px;
+  float: right;
+  margin-right: 10px;
+  margin-top: 0px;
+}
+
+.main {
+  width: 65%;
+  margin: 0 auto;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+  height: 100%
+}
+
+/* when poster is clicked on, make everything else blurry */
+.main.blurry {
+  filter: blur(5px);
+}
+
+.main.hidden {
+  display: none;
+}
+
+.poster-frame {
+  /* border: 2px solid red; */
+  width: 30%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(30, 30, 30, .8);
+  margin: .5em;
+  height: auto;
+  position: relative;
+}
+
+.poster-frame:hover {
+  cursor: pointer;
+}
+
+.poster-frame img {
+  width: 100%;
+  align-self: center;
+  height: auto;
+}
+
+.poster-frame h2 {
+  text-align: center;
+  padding: 5%;
+  font-family: 'Helvetica Neue', helvetica, sans-serif;
+  font-weight: 400;
+}
+
+.zip-code-search {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-flow: wrap;
+}
+
+.search-bar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* margin: 0 auto; */
+  font-family: 'Helvetica Neue', helvetica, sans-serif;
+}
+.no-match {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* margin: 0 auto; */
+  font-family: 'Helvetica Neue', helvetica, sans-serif;
+  font-weight: 200;
+}
+input {
+    appearance: none;
+    width: 100%;
+    border: 0;
+    font-family: 'Helvetica Neue', helvetica, sans-serif;
+    font-weight: 200;
+    padding: 12px 0;
+    height: 48px;
+    font-size: 24px;
+    border-bottom: 2px solid rgb(255, 255, 255);
+    background: none;
+    border-radius: 0;
+    color: rgb(255, 255, 255);
+    transition: all .15s ease;
+}
+
+input:focus {
+  outline: none;
+}
+
+.zip-code-search.hidden {
+  display: none;
+}
+
+.site-logo {
+  width: 100px;
+  margin-top: 30px;
+  margin-left: 30px;
+  filter: brightness(50%);
+
+}
+
+.site-logo:hover {
+  cursor: pointer;
+  filter: brightness(100%);
+}
+
+
+.title{
+  color: white;
+  font-family: 'Helvetica Neue', helvetica, sans-serif;
+  font-size: 16px;
+  padding-left: -10px;
+  top: -15px;
+  width: auto;
+}
+
+.mini-poster-container {
+  width: 20%;
+  float: right;
+}
+
+.mini-poster-container img {
+  width: 100%;
+}
+
+/* turns off background when viewing movie data popup */
+body.only-info-popup *{
+  pointer-events: none;
+}
+
+
+body.only-info-popup
+.info-popup{
+  pointer-events: all;
+}
+
+.info-popup a {
+  pointer-events: all;
+  text-decoration: none;
+  color: white;
+}
+
+.info-popup a:hover {
+  text-decoration: underline;
+}
+
+.movie-search.hidden {
+  display: none;
+}
+
+
+.movie-search {
+  display: flex;
+  margin-right: 5px;
+  z-index: 4;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  /* margin: 0 auto; */
+  font-family: 'Helvetica Neue', helvetica, sans-serif;
+}
+
+.matched-poster {
+  width: 300px;
+  height: 450px;
+}
+
+div.no-rain-container {
+  position: absolute;
+  width: 50%;
+  overflow: auto;
+  height: 350px;
+  left: 50%;
+  margin-left: -25%;
+  top: 40%;
+  /* left: 50%; */
+  color: white;
+  text-align: center;
+  font-family: 'Helvetica Neue', helvetica, sans-serif;
+  font-weight: 200;
+}
+
+.no-rain-container .no-rain {
+  font-weight: 200;
+}
+
+.no-rain-container .netflix-link {
+  pointer-events: all;
+  text-decoration: none;
+  color: white;
+  font-size: 50px;
+  font-weight: 400;
+}
+
+.no-rain-container .netflix-link:hover {
+  text-decoration: underline;
+  color: red;
+}
+
+/* icon css */
+
+/* $bg-color: #181c1d;
+$bg-color-light: rgba(255, 255, 255, 0.2);
+$bg-color-lighter: rgba(255, 1255, 255, 0.1);
+$color-accent: white; */
+.nav-bar {
+    /* overflow: hidden; */
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 20%; /* set width to 20% */
+    
+}
+
+.site-logo.blurry {
+  filter: blur(5px);
+}
+
+.icon {
+  position: relative;
+  display: inline-block;
+  background-color: black;
+  margin: 5%;
+  padding-left: 1px;
+  width: 4em;
+  height: 4em;
+  font-size: 1em;
+  margin-bottom: 5px;
+}
+
+.cloud2 {
+  color: black;
+  background: black;
+  position: absolute;
+  width: 3.4875em;
+  height: 3.4875em;
+  border-radius: 50%;
+  box-shadow: 2.0625em 0.9375em 0 -0.9375em, 0 0 0 0.375em white, 2.0625em 0.9375em 0 -0.5625em white;
+}
+
+.cloud2:after {
+  color: black;
+  background: black;
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 1.8em;
+  display: block;
+  width: 2.0em;
+  height: 1em;
+  box-shadow: 0 0.4375em 0 -0.0625em white;
+}
+
+.rain {
+  transform: translate(1.3em, 2.2em);
+  width: 2.8em;
+  height: 2.5em;
+  background: black;
+  position: absolute;
+}
+
+.rain:after {
+  content: '';
+  position: absolute;
+  display: block;
+  z-index: 2;
+  color: white;
+  background: white;
+  width: .3em;
+  height: 1.0em;
+  border-radius: .15em;
+  transform: translate(0.4em, 0.2em) rotate(20deg);
+  animation: rain 2s infinite ease-in-out;
+  box-shadow: .6em .6em, 1.2em -.2em, 1.2em 1.2em, 1.8em .2em;
+}
+
+@keyframes rain {
+  0% {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0.6em 0.6em rgba(255, 255, 255, 0.2), 1.2em -0.2em rgba(255, 255, 255, 0.2), 1.2em 1.2em rgba(255, 255, 255, 0.2), 1.8em 0.2em rgba(255, 255, 255, 0.2);
+  }
+  30% {
+    background-color: white;
+    box-shadow: 0.6em 0.6em rgba(255, 255, 255, 0.2), 1.2em -0.2em white, 1.2em 1.2em rgba(255, 255, 255, 0.2), 1.8em 0.2em rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0.6em 0.6em white, 1.2em -0.2em 0 rgba(255, 255, 255, 0.2), 1.2em 1.2em rgba(255, 255, 255, 0.2), 1.8em 0.2em white;
+  }
+  80% {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0.6em 0.6em rgba(255, 255, 255, 0.2), 1.2em -0.2em rgba(255, 255, 255, 0.2), 1.2em 1.2em white, 1.8em 0.2em rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0.6em 0.6em rgba(255, 255, 255, 0.2), 1.2em -0.2em rgba(255, 255, 255, 0.2), 1.2em 1.2em rgba(255, 255, 255, 0.2), 1.8em 0.2em rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* media queries */
+
+/* @media (max-width: 740px) {
+  .poster-container {
+    justify-content: center;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;  
+  }
+
+  .poster-frame {
+    width: 45%;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+  }
+  
+} */
+
+@media (max-width: 630px) {
+  .poster-frame {
+    width: 80%;
+    /* height: 100%; */
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+  }
+
+  .info-popup {
+    width: 75%;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+  }
+
+  .site-logo {
+    /* display: block; */
+    -webkit-transform:scale(0.5);
+    -moz-transform:scale(0.5);
+    -ms-transform:scale(0.5);
+    transform: scale(0.5);
+    /* margin: 0 auto; */
+    width: 100%;
+    margin: 0;
+
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+  }
+  
+  .nav-bar {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    position: static;
+    height: 70px;
+    
+  }
+  .zip-code-search {
+    height: 80%;
+  }
+
+  div.weather {
+    width: 100%;
+    float: right;
+    font-size: 13px;
+    -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+  }
+
+  /* div.poster-container {
+    margin-top: 50px; */
+    /* height: 375px; */
+    /* -webkit-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+    overflow: visible;
+    height: auto;
+  } */
+
+  .movie-search {
+    height: 50px;
+  }
+
+  div.poster-container {
+    display: flex;
+    justify-content: center;
+    top: 100px;
+    width: 100%;
+    height: 60%;
+    flex-wrap: wrap;
+    overflow: auto;
+    margin-top: 10px;
+  }
+
+  .main {
+    width: 100%;
+    position: static;
+    transform: none;
+    text-align: center;
+    overflow: visible;
+  }
+
+  .no-rain-container .netflix-link {
+    font-size: 35px;
+  }
+
+  body {
+    height: 100%;
+    position: fixed;
+  }
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MovieCloud</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/index.css">
+    
+</head>
+<nav class="nav-bar">
+    <div class="site-logo search-again" data-search-again title="click to search again">
+    <div class="icon">
+            <div class="cloud2"></div>
+            <div class="rain"></div>
+        </div>
+        <div class="site-name">
+            <h1 class="title">MovieCloud</h1>
+        </div>
+    </div>
+</nav>
+<body>
+    <div class="zip-code-search">
+        <div class="search-bar">
+                <label for="inp" class="inp">
+                        <input type="text" class="inp" name="zipcode" maxlength="5" placeholder="&nbsp;" autocomplete="off" autofocus data-zipcodeinput></input>
+                        <span class="label">enter zip code</span>
+                        
+                </label>
+        </div>
+    </div>
+    <!-- <h3 data-search-again class='search-again'>Search again.</h3> -->
+    <div data-main class='main hidden'>
+
+        
+        <div data-weather class="weather">
+        
+            
+        </div>
+
+        <div data-movie-search-div class='movie-search hidden'>
+            
+            <label for="inp" class="inp">
+                <input class="movie-input inp" data-movie-search type="text" name="movie-search"></input>
+                <span class="label">filter results</span>
+            </label>
+            
+            <h2 data-stop-search></h2>
+        </div>
+
+        <div data-no-match-info class="no-matches">
+            <h2 data-no-match-h2></h2>
+        </div>
+        
+        <div class="poster-container hidden" data-postercontainer>
+            
+        </div>
+    </div>
+
+    <div class="info-popup hidden" data-info-pop>
+
+    </div>
+    <script src="scripts/weather.js"></script>
+    <script src="scripts/zipCodeVar.js"></script>
+    <script src="scripts/showtimes.js"></script>
+    <script src="scripts/index.js"></script>
+</body>
+</html>
