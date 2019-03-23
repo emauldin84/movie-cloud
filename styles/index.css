@@ -17,6 +17,7 @@ div.weather {
   text-align: center;
   font-family: 'Helvetica Neue', helvetica, sans-serif;
   font-weight: 200;
+  height: auto;
   /* font-size: 50px;
   font-weight: 400; */
 
@@ -129,7 +130,7 @@ div.weather h2:nth-child(3) {
   position: fixed;
   left: 50%;
   transform: translate(-50%, 0);
-  height: 100%
+  height: 100%;
 }
 
 /* when poster is clicked on, make everything else blurry */
@@ -282,6 +283,7 @@ body.only-info-popup
   margin-right: 5px;
   z-index: 4;
   width: 100%;
+  height: auto;
   display: flex;
   justify-content: center;
   /* margin: 0 auto; */
@@ -426,7 +428,7 @@ $color-accent: white; */
 
 /* media queries */
 
-/* @media (max-width: 740px) {
+@media (max-width: 740px) {
   .poster-container {
     justify-content: center;
     -webkit-transition: all .5s;
@@ -434,14 +436,14 @@ $color-accent: white; */
     transition: all .5s;  
   }
 
-  .poster-frame {
+.poster-frame {
     width: 45%;
     -webkit-transition: all .5s;
     -moz-transition: all .5s;
-    transition: all .5s;
+    transition: all .5s; 
   }
   
-} */
+}
 
 @media (max-width: 630px) {
   .poster-frame {
@@ -488,11 +490,13 @@ $color-accent: white; */
 
   div.weather {
     width: 100%;
+    height: auto;
     float: right;
     font-size: 13px;
     -webkit-transition: all .5s;
     -moz-transition: all .5s;
     transition: all .5s;
+    line-height: 1.5em;
   }
 
   /* div.poster-container {
@@ -505,16 +509,44 @@ $color-accent: white; */
     height: auto;
   } */
 
+  div.weather h2:nth-child(1) {
+    /* line-height: 70% */
+    -webkit-transform:scale(0.7);
+    -moz-transform:scale(0.7);
+    -ms-transform:scale(0.7);
+    transform: scale(0.7);
+  }
+  
+  div.weather h2:nth-child(2) {
+    -webkit-transform:scale(0.5);
+    -moz-transform:scale(0.5);
+    -ms-transform:scale(0.5);
+    transform: scale(0.5);
+  }
+  
+  div.weather h2:nth-child(3) {
+    -webkit-transform:scale(0.8);
+    -moz-transform:scale(0.8);
+    -ms-transform:scale(0.8);
+    transform: scale(0.8);
+  }
+
   .movie-search {
-    height: 50px;
+    height: auto;
+  }
+
+  .movie-input {
+    padding-top: 0;
+    padding-bottom: 3px;
+    height: 30px;
   }
 
   div.poster-container {
     display: flex;
     justify-content: center;
-    top: 100px;
+    /* top: 100px; */
     width: 100%;
-    height: 60%;
+    height: 70%;
     flex-wrap: wrap;
     overflow: auto;
     margin-top: 10px;
@@ -522,6 +554,7 @@ $color-accent: white; */
 
   .main {
     width: 100%;
+    height: 100vmax;
     position: static;
     transform: none;
     text-align: center;
