@@ -255,16 +255,19 @@ input:focus {
 /* turns off background when viewing movie data popup */
 body.only-info-popup *{
   pointer-events: none;
+  touch-action: none;
 }
 
 
 body.only-info-popup
 .info-popup{
   pointer-events: all;
+  touch-action: all;
 }
 
 .info-popup a {
   pointer-events: all;
+  touch-action: all;
   text-decoration: none;
   color: white;
 }
