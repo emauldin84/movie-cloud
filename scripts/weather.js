@@ -3,7 +3,7 @@
 // function is passed zip code from the user, fetches weather data object
 function getWeatherData(zipcode) {
     // Below is for when we are actually calling the OpenWeatherMap API to get real-time forecast
-    const weatherApiKey = '449d8f25bab8a422a5c3936e6e9abe0e';
+    const weatherApiKey = 'b3ae9b9b7528d4c58ecc15e0c9a37d68';
 
     // first global variable
     zip = zipcode;
